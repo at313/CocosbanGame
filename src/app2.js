@@ -1,5 +1,5 @@
 var size;
-var level_1 = [
+var level_2 = [
   [1, 1, 1, 1, 1, 1, 1],
   [1, 1, 0, 0, 0, 0, 1],
   [1, 1, 3, 0, 2, 0, 1],
@@ -9,7 +9,7 @@ var level_1 = [
   [1, 1, 1, 1, 1, 1, 1]
 ];
 
-var init_map = [            // 初期化用のマップ配列
+var init_map2 = [            // 初期化用のマップ配列
   [1, 1, 1, 1, 1, 1, 1],
   [1, 1, 0, 0, 0, 0, 1],
   [1, 1, 3, 0, 2, 0, 1],
@@ -33,7 +33,7 @@ var swipeTolerance = 10;//スワイプかを判断する閾値
 
 audioEngine = cc.audioEngine;
 
-var gameScene1 = cc.Scene.extend({
+var gameScene2 = cc.Scene.extend({
   onEnter: function() {
     this._super();
     var layer0 = new gameLayer();
@@ -70,7 +70,7 @@ var gameLayer = cc.Layer.extend({
       cratesArray[i] = [];　 //配列オブジェクトの生成
       init_crates[i] = [];
       for (j = 0; j < 7; j++) {
-        switch (level_1[i][j]) {
+        switch (level_2[i][j]) {
           case 4:
           case 6:
             playerSprite = cc.Sprite.create(cache.getSpriteFrame("player.png"));
@@ -155,26 +155,26 @@ function swipeDirection(){
 
 function move(deltaX,deltaY){
   back_up();      // 動きのバックアップ
-  switch(level_1[playerPosition.y+deltaY][playerPosition.x+deltaX]){
+  switch(level_2[playerPosition.y+deltaY][playerPosition.x+deltaX]){
       case 0:
       case 2:
-          level_1[playerPosition.y][playerPosition.x]-=4;
+          level_2[playerPosition.y][playerPosition.x]-=4;
           playerPosition.x+=deltaX;
           playerPosition.y+=deltaY;
-          level_1[playerPosition.y][playerPosition.x]+=4;
+          level_2[playerPosition.y][playerPosition.x]+=4;
           playerSprite.setPosition(165+25*playerPosition.x,185-25*playerPosition.y);
           break;
       case 3:
       case 5:
           audioEngine.playEffect(res.se_move);
-          if(level_1[playerPosition.y+deltaY*2][playerPosition.x+deltaX*2]==0 ||
-          level_1[playerPosition.y+deltaY*2][playerPosition.x+deltaX*2]==2){
-          level_1[playerPosition.y][playerPosition.x]-=4;
+          if(level_2[playerPosition.y+deltaY*2][playerPosition.x+deltaX*2]==0 ||
+          level_2[playerPosition.y+deltaY*2][playerPosition.x+deltaX*2]==2){
+          level_2[playerPosition.y][playerPosition.x]-=4;
           playerPosition.x+=deltaX;
           playerPosition.y+=deltaY;
-          level_1[playerPosition.y][playerPosition.x]+=1;
+          level_2[playerPosition.y][playerPosition.x]+=1;
           playerSprite.setPosition(165+25*playerPosition.x,185-25*playerPosition.y);
-          level_1[playerPosition.y+deltaY][playerPosition.x+deltaX]+=3;
+          level_2[playerPosition.y+deltaY][playerPosition.x+deltaX]+=3;
           var movingCrate = cratesArray[playerPosition.y][playerPosition.x];
           movingCrate.setPosition(movingCrate.getPosition().x+25*deltaX,movingCrate.
           getPosition().y-25*deltaY);
@@ -190,9 +190,9 @@ function move(deltaX,deltaY){
 function reset(){
   for (var i = 0; i < 7; i++){
     for (var j = 0; j < 7; j++){
-      var copy = init_map[i][j];
-      level_1[i][j] = copy;
-      switch (level_1[i][j]) {
+      var copy = init_map2[i][j];
+      level_2[i][j] = copy;
+      switch (level_2[i][j]) {
         case 4:
         case 6:
           playerSprite.setPosition(165 + 25 * j, 185 - 25 * i);
@@ -225,7 +225,7 @@ function back_up(){
     back_map[i] = [];
     back_crates[i] = [];
     for (var j = 0; j < 7; j++){
-      var copy1 = level_1[i][j];
+      var copy1 = level_2[i][j];
       back_map[i][j] = copy1;
       var copy2 = cratesArray[i][j];
       back_crates[i][j] = copy2;
@@ -238,8 +238,8 @@ function back(){
   for (var i = 0; i < 7; i++){
     for (var j = 0; j < 7; j++){
       var copy1 = back_map[i][j];
-      level_1[i][j] = copy1;
-      switch (level_1[i][j]) {
+      level_2[i][j] = copy1;
+      switch (level_2[i][j]) {
         case 4:
         case 6:
           playerSprite.setPosition(165 + 25 * j, 185 - 25 * i);
@@ -271,7 +271,7 @@ function complete_check(){
   var game_f = 0;
   for (var i = 0; i < 7; i++) {
     for (var j = 0; j < 7; j++) {
-      if ( level_1[i][j] == 5 ) game_f +=1;
+      if ( level_2[i][j] == 5 ) game_f +=1;
     }
   }
   console.log(game_f);
