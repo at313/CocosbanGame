@@ -41,10 +41,49 @@
                 <key>sourceSize</key>
                 <string>{5,5}</string>
             </dict>
-            <key>level.png</key>
+            <key>level0.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,68},{35,35}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{35,35}}</string>
+                <key>sourceSize</key>
+                <string>{35,35}</string>
+            </dict>
+            <key>level1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{46,68},{35,35}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{35,35}}</string>
+                <key>sourceSize</key>
+                <string>{35,35}</string>
+            </dict>
+            <key>level2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{100,2},{35,35}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{35,35}}</string>
+                <key>sourceSize</key>
+                <string>{35,35}</string>
+            </dict>
+            <key>level3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{100,68},{35,35}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -68,6 +107,6 @@
                 <string>{5,5}</string>
             </dict>
         </dict>
-       
+
     </dict>
 </plist>
