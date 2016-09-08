@@ -360,6 +360,7 @@ function complete_check(){
     }
     level_num++;
     if (level_num > 3) level_num = 0;
-    cc.director.runScene(new clearScene());
+    var c = cc.TransitionFadeDown.create(0.3, new clearScene());
+    cc.director.runScene(c);
   }
 }

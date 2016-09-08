@@ -50,7 +50,8 @@ var Layer3 = cc.Layer.extend({
       if (audioEngine.isMusicPlaying()) {
         audioEngine.stopMusic();
       }
-    cc.director.runScene(new gameScene1);
+    var s = cc.TransitionFadeDown.create(0.3, new gameScene1());
+    cc.director.runScene(s);
     },
 });
 
