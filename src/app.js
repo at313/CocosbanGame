@@ -1,23 +1,99 @@
 var size;
-var level_1 = [
-  [1, 1, 1, 1, 1, 1, 1],
-  [1, 1, 0, 0, 0, 0, 1],
-  [1, 1, 3, 0, 2, 0, 1],
-  [1, 0, 0, 4, 0, 0, 1],
-  [1, 0, 3, 1, 2, 0, 1],
-  [1, 0, 0, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1, 1, 1]
-];
+var level_num = 0;
+var clear_f = [2, 2, 2, 3];
+var level;
+var init_map;
+var map;
 
-var init_map = [            // 初期化用のマップ配列
-  [1, 1, 1, 1, 1, 1, 1],
-  [1, 1, 0, 0, 0, 0, 1],
-  [1, 1, 3, 0, 2, 0, 1],
-  [1, 0, 0, 4, 0, 0, 1],
-  [1, 0, 3, 1, 2, 0, 1],
-  [1, 0, 0, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1, 1, 1]
-];
+function init_set(){
+  switch (level_num) {
+    case 0:
+      console.log("Stage1");
+      level = [
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 0, 0, 0, 0, 1],
+        [1, 1, 3, 0, 2, 0, 1],
+        [1, 0, 0, 4, 0, 0, 1],
+        [1, 0, 3, 1, 2, 0, 1],
+        [1, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1]
+      ];
+      init_map = [
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 0, 0, 0, 0, 1],
+        [1, 1, 3, 0, 2, 0, 1],
+        [1, 0, 0, 4, 0, 0, 1],
+        [1, 0, 3, 1, 2, 0, 1],
+        [1, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1]
+      ];
+      break;
+    case 1:
+      console.log("Stage2");
+      level = [
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 0, 0, 0, 0, 1],
+        [1, 1, 3, 0, 3, 0, 1],
+        [1, 2, 0, 4, 0, 0, 1],
+        [1, 0, 0, 1, 0, 0, 1],
+        [1, 0, 2, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1]
+      ];
+      init_map = [
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 0, 0, 0, 0, 1],
+        [1, 1, 3, 0, 3, 0, 1],
+        [1, 2, 0, 4, 0, 0, 1],
+        [1, 0, 0, 1, 0, 0, 1],
+        [1, 0, 2, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1]
+      ];
+      break;
+    case 2:
+      console.log("Stage3");
+      level = [
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 0, 2, 0, 0, 1],
+        [1, 1, 3, 0, 0, 0, 1],
+        [1, 0, 0, 4, 2, 0, 1],
+        [1, 0, 3, 1, 0, 0, 1],
+        [1, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1]
+      ];
+      init_map = [
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 0, 2, 0, 0, 1],
+        [1, 1, 3, 0, 0, 0, 1],
+        [1, 0, 0, 4, 2, 0, 1],
+        [1, 0, 3, 1, 0, 0, 1],
+        [1, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1]
+      ];
+      break;
+    case 3:
+      console.log("Stage4");
+      level = [
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 0, 2, 0, 0, 1],
+        [1, 1, 3, 0, 0, 2, 1],
+        [1, 2, 0, 4, 3, 0, 1],
+        [1, 0, 3, 1, 0, 0, 1],
+        [1, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1]
+      ];
+      init_map = [
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 0, 2, 0, 0, 1],
+        [1, 1, 3, 0, 0, 2, 1],
+        [1, 2, 0, 4, 3, 0, 1],
+        [1, 0, 3, 1, 0, 0, 1],
+        [1, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1]
+      ];
+      break;
+    default:
+  }
+}
 
 var init_crates = [];       // 初期化用の木箱スプライト配列
 var back_map = [];          // 戻り処理用のマップ配列
@@ -36,6 +112,7 @@ audioEngine = cc.audioEngine;
 var gameScene1 = cc.Scene.extend({
   onEnter: function() {
     this._super();
+    init_set();
     var layer0 = new gameLayer();
     layer0.init();
     if (!audioEngine.isMusicPlaying()) {
@@ -52,6 +129,7 @@ var gameLayer = cc.Layer.extend({
     cache = cc.spriteFrameCache;
     //スプライトフレームのデータを読み込む
     cache.addSpriteFrames(res.spritesheet_plist);
+
     var backgroundSprite = cc.Sprite.create(cache.getSpriteFrame("background.png"));
     //アンチエイリアス処理を止める
     backgroundSprite.getTexture().setAliasTexParameters();
@@ -61,7 +139,7 @@ var gameLayer = cc.Layer.extend({
     backgroundSprite.setScale(5);
     this.addChild(backgroundSprite);
 
-    var levelSprite = cc.Sprite.create(cache.getSpriteFrame("level.png"));
+    var levelSprite = cc.Sprite.create(cache.getSpriteFrame("level" + level_num + ".png"));
     levelSprite.setPosition(240, 110);
     levelSprite.setScale(5);
     this.addChild(levelSprite);
@@ -70,7 +148,7 @@ var gameLayer = cc.Layer.extend({
       cratesArray[i] = [];　 //配列オブジェクトの生成
       init_crates[i] = [];
       for (j = 0; j < 7; j++) {
-        switch (level_1[i][j]) {
+        switch (level[i][j]) {
           case 4:
           case 6:
             playerSprite = cc.Sprite.create(cache.getSpriteFrame("player.png"));
@@ -155,26 +233,26 @@ function swipeDirection(){
 
 function move(deltaX,deltaY){
   back_up();      // 動きのバックアップ
-  switch(level_1[playerPosition.y+deltaY][playerPosition.x+deltaX]){
+  switch(level[playerPosition.y+deltaY][playerPosition.x+deltaX]){
       case 0:
       case 2:
-          level_1[playerPosition.y][playerPosition.x]-=4;
+          level[playerPosition.y][playerPosition.x]-=4;
           playerPosition.x+=deltaX;
           playerPosition.y+=deltaY;
-          level_1[playerPosition.y][playerPosition.x]+=4;
+          level[playerPosition.y][playerPosition.x]+=4;
           playerSprite.setPosition(165+25*playerPosition.x,185-25*playerPosition.y);
           break;
       case 3:
       case 5:
           audioEngine.playEffect(res.se_move);
-          if(level_1[playerPosition.y+deltaY*2][playerPosition.x+deltaX*2]==0 ||
-          level_1[playerPosition.y+deltaY*2][playerPosition.x+deltaX*2]==2){
-          level_1[playerPosition.y][playerPosition.x]-=4;
+          if(level[playerPosition.y+deltaY*2][playerPosition.x+deltaX*2]==0 ||
+          level[playerPosition.y+deltaY*2][playerPosition.x+deltaX*2]==2){
+          level[playerPosition.y][playerPosition.x]-=4;
           playerPosition.x+=deltaX;
           playerPosition.y+=deltaY;
-          level_1[playerPosition.y][playerPosition.x]+=1;
+          level[playerPosition.y][playerPosition.x]+=1;
           playerSprite.setPosition(165+25*playerPosition.x,185-25*playerPosition.y);
-          level_1[playerPosition.y+deltaY][playerPosition.x+deltaX]+=3;
+          level[playerPosition.y+deltaY][playerPosition.x+deltaX]+=3;
           var movingCrate = cratesArray[playerPosition.y][playerPosition.x];
           movingCrate.setPosition(movingCrate.getPosition().x+25*deltaX,movingCrate.
           getPosition().y-25*deltaY);
@@ -191,8 +269,8 @@ function reset(){
   for (var i = 0; i < 7; i++){
     for (var j = 0; j < 7; j++){
       var copy = init_map[i][j];
-      level_1[i][j] = copy;
-      switch (level_1[i][j]) {
+      level[i][j] = copy;
+      switch (level[i][j]) {
         case 4:
         case 6:
           playerSprite.setPosition(165 + 25 * j, 185 - 25 * i);
@@ -225,7 +303,7 @@ function back_up(){
     back_map[i] = [];
     back_crates[i] = [];
     for (var j = 0; j < 7; j++){
-      var copy1 = level_1[i][j];
+      var copy1 = level[i][j];
       back_map[i][j] = copy1;
       var copy2 = cratesArray[i][j];
       back_crates[i][j] = copy2;
@@ -238,8 +316,8 @@ function back(){
   for (var i = 0; i < 7; i++){
     for (var j = 0; j < 7; j++){
       var copy1 = back_map[i][j];
-      level_1[i][j] = copy1;
-      switch (level_1[i][j]) {
+      level[i][j] = copy1;
+      switch (level[i][j]) {
         case 4:
         case 6:
           playerSprite.setPosition(165 + 25 * j, 185 - 25 * i);
@@ -271,15 +349,17 @@ function complete_check(){
   var game_f = 0;
   for (var i = 0; i < 7; i++) {
     for (var j = 0; j < 7; j++) {
-      if ( level_1[i][j] == 5 ) game_f +=1;
+      if (level[i][j] == 5) game_f +=1;
     }
   }
   console.log(game_f);
-  if (game_f == 2){
+  if (game_f ==clear_f[level_num]){
     audioEngine.playEffect(res.se_clear);
     if (audioEngine.isMusicPlaying()) {
       audioEngine.stopMusic();
     }
+    level_num++;
+    if (level_num > 3) level_num = 0;
     cc.director.runScene(new clearScene());
   }
 }

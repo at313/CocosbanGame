@@ -1,14 +1,31 @@
 //clear.js
+var stage_num = 0;
 audioEngine = cc.audioEngine;
-var num = 0;
 var Layer2 = cc.Layer.extend({
     ctor: function() {
         this._super();
         var size = cc.director.getWinSize();
 
-        var label = cc.LabelTTF.create("Game Clear!!", "Arial", 26);
-        label.setPosition(size.width / 2, size.height / 2);
+        var label = cc.LabelTTF.create("Game Clear!!", "Arial", 48);
+        label.setPosition(size.width * 0.5, size.height * 0.6);
         this.addChild(label, 1);
+
+        var back_img = cc.Sprite.create(res.back_png);
+        back_img.getTexture().setAliasTexParameters();
+        back_img.setPosition(240, 160);
+        back_img.setScale(5);
+        this.addChild(back_img);
+
+        var pl_img = cc.Sprite.create(res.player_png);
+        pl_img.getTexture().setAliasTexParameters();
+        pl_img.setPosition(size.width * 0.5, size.height * 0.4);
+        pl_img.setScale(10);
+        this.addChild(pl_img);
+
+        var label2 = cc.LabelTTF.create("Click on NextStage", "Arial", 24);
+        label2.setPosition(size.width * 0.5, size.height * 0.2);
+        this.addChild(label2, 1);
+
         return true;
     },
 });
@@ -35,10 +52,11 @@ var Layer1 = cc.Layer.extend({
     },
     onTouchMoved: function(touch, event) {},
     onTouchEnded: function(touch, event) {
+      stage_num++;
       if (audioEngine.isMusicPlaying()) {
         audioEngine.stopMusic();
       }
-      //if(num == 0) cc.director.runScene(new gameScene1);
+    cc.director.runScene(new gameScene1);
     },
 });
 
