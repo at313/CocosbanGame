@@ -353,7 +353,7 @@ function complete_check(){
     }
   }
   console.log(game_f);
-  if (game_f ==clear_f[level_num]){
+  if (game_f == clear_f[level_num]){
     audioEngine.playEffect(res.se_clear);
     if (audioEngine.isMusicPlaying()) {
       audioEngine.stopMusic();

@@ -1,14 +1,9 @@
-//clear.js
-var stage_num = 0;
+//title.js
 audioEngine = cc.audioEngine;
-var Layer2 = cc.Layer.extend({
+var Layer4 = cc.Layer.extend({
     ctor: function() {
         this._super();
         var size = cc.director.getWinSize();
-
-        var label = cc.LabelTTF.create("Game Clear!!", "Arial", 48);
-        label.setPosition(size.width * 0.5, size.height * 0.6);
-        this.addChild(label, 1);
 
         var back_img = cc.Sprite.create(res.back_png);
         back_img.getTexture().setAliasTexParameters();
@@ -22,16 +17,16 @@ var Layer2 = cc.Layer.extend({
         pl_img.setScale(10);
         this.addChild(pl_img);
 
-        var label2 = cc.LabelTTF.create("Click on NextStage", "Arial", 24);
-        label2.setPosition(size.width * 0.5, size.height * 0.2);
-        this.addChild(label2, 1);
+        var label4 = cc.LabelTTF.create("Click on GameStart!", "Arial", 24);
+        label4.setPosition(size.width * 0.5, size.height * 0.2);
+        this.addChild(label4, 1);
 
         return true;
     },
 });
 
 
-var Layer1 = cc.Layer.extend({
+var Layer3 = cc.Layer.extend({
     sprite: null,
     ctor: function() {
         this._super();
@@ -52,27 +47,22 @@ var Layer1 = cc.Layer.extend({
     },
     onTouchMoved: function(touch, event) {},
     onTouchEnded: function(touch, event) {
-      stage_num++;
       if (audioEngine.isMusicPlaying()) {
         audioEngine.stopMusic();
       }
-      if(stage_num <= 3) cc.director.runScene(new gameScene1());
-      else {
-        stage_num = 0;
-        cc.director.runScene(new titleScene());
-      }
+    cc.director.runScene(new gameScene1);
     },
 });
 
-var clearScene = cc.Scene.extend({
+var titleScene = cc.Scene.extend({
     onEnter: function() {
         this._super();
 
-        var layer1 = new Layer1();
-        this.addChild(layer1);
+        var layer3 = new Layer3();
+        this.addChild(layer3);
 
-        var layer2 = new Layer2();
-        this.addChild(layer2);
+        var layer4 = new Layer4();
+        this.addChild(layer4);
 
         if (!audioEngine.isMusicPlaying()) {
           audioEngine.playMusic(res.bgm_clear, true);
