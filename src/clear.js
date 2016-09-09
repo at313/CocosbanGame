@@ -57,11 +57,11 @@ var Layer1 = cc.Layer.extend({
         audioEngine.stopMusic();
       }
       if(stage_num <= 3){
-        var a = cc.TransitionFadeDown.create(0.3, new gameScene1());
+        var a = cc.TransitionFadeDown.create(0.5, new gameScene1());
         cc.director.runScene(a);
       }else {
         stage_num = 0;
-        var b = cc.TransitionFadeDown.create(0.3, new titleScene());
+        var b = cc.TransitionFadeDown.create(0.5, new titleScene());
         cc.director.runScene(b);
       }
     },

@@ -124,6 +124,7 @@ var gameScene1 = cc.Scene.extend({
 
 var gameLayer = cc.Layer.extend({
   init: function() {
+    size = cc.director.getWinSize();
     this._super();
     //スプライトフレームのキャッシュオブジェクトを作成する
     cache = cc.spriteFrameCache;
@@ -143,6 +144,18 @@ var gameLayer = cc.Layer.extend({
     levelSprite.setPosition(240, 110);
     levelSprite.setScale(5);
     this.addChild(levelSprite);
+
+    var label_D = cc.LabelTTF.create("画面ドラッグで移動", "Arial", 10);
+    label_D.setPosition(size.width * 0.1, size.height * 0.2);
+    this.addChild(label_D, 1);
+
+    var label_R = cc.LabelTTF.create("R : 初期状態にリセット", "Arial", 10);
+    label_R.setPosition(size.width * 0.115, size.height * 0.15);
+    this.addChild(label_R, 1);
+
+    var label_B = cc.LabelTTF.create("B : ひとつ前の状態に戻る", "Arial", 10);
+    label_B.setPosition(size.width * 0.135, size.height * 0.1);
+    this.addChild(label_B, 1);
 
     for (i = 0; i < 7; i++) {　　　　　　
       cratesArray[i] = [];　 //配列オブジェクトの生成
@@ -240,7 +253,7 @@ function move(deltaX,deltaY){
           playerPosition.x+=deltaX;
           playerPosition.y+=deltaY;
           level[playerPosition.y][playerPosition.x]+=4;
-          playerSprite.setPosition(165+25*playerPosition.x,185-25*playerPosition.y);
+          playerSprite.runAction( cc.MoveTo.create(0.1,cc.p(165+25*playerPosition.x,185-25*playerPosition.y)));
           break;
       case 3:
       case 5:
@@ -251,11 +264,10 @@ function move(deltaX,deltaY){
           playerPosition.x+=deltaX;
           playerPosition.y+=deltaY;
           level[playerPosition.y][playerPosition.x]+=1;
-          playerSprite.setPosition(165+25*playerPosition.x,185-25*playerPosition.y);
+          playerSprite.runAction( cc.MoveTo.create(0.1,cc.p(165+25*playerPosition.x,185-25*playerPosition.y)));
           level[playerPosition.y+deltaY][playerPosition.x+deltaX]+=3;
           var movingCrate = cratesArray[playerPosition.y][playerPosition.x];
-          movingCrate.setPosition(movingCrate.getPosition().x+25*deltaX,movingCrate.
-          getPosition().y-25*deltaY);
+          movingCrate.runAction( cc.MoveTo.create(0.1,cc.p(movingCrate.getPosition().x+25*deltaX,movingCrate.getPosition().y-25*deltaY)));
           cratesArray[playerPosition.y+deltaY][playerPosition.x+deltaX]=movingCrate;
           cratesArray[playerPosition.y][playerPosition.x]=null;
           }
@@ -360,7 +372,7 @@ function complete_check(){
     }
     level_num++;
     if (level_num > 3) level_num = 0;
-    var c = cc.TransitionFadeDown.create(0.3, new clearScene());
+    var c = cc.TransitionFadeDown.create(0.5, new clearScene());
     cc.director.runScene(c);
   }
 }
